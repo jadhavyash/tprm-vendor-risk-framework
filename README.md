@@ -1,6 +1,6 @@
 # Third-Party Risk Management (TPRM) & Vendor Compliance Framework
 
-**Enterprise-grade TPRM program using ISO 27001 Annex A and NIST CSF as evaluation baselines. Includes tiered vendor questionnaires, risk scoring rubrics, exception management workflows, and SOC 2 Type II assurance review templates.**
+**Enterprise-grade TPRM program using ISO 27001 Annex A and NIST CSF as evaluation baselines. Includes tiered vendor questionnaires, a weighted risk scoring rubric, exception management workflows, an executive reporting template, and a fully worked sample assessment.**
 
 ![ISO 27001](https://img.shields.io/badge/ISO_27001-Annex_A-0D47A1?style=flat)
 ![NIST CSF](https://img.shields.io/badge/NIST_CSF-Aligned-1565C0?style=flat)
@@ -10,70 +10,60 @@
 
 ```
 Vendor Onboarding
-       │
-       ▼
+       |
+       v
 Tier Classification (Critical / High / Medium / Low)
-       │
-       ├──▶ Tier 1 (Critical) — Full questionnaire + on-site audit
-       ├──▶ Tier 2 (High)     — Standard questionnaire + SOC 2 review
-       ├──▶ Tier 3 (Medium)   — Lite questionnaire + cert verification
-       └──▶ Tier 4 (Low)      — Self-attestation only
-               │
-               ▼
-       Risk Scoring & Residual Risk Calculation
-               │
-               ▼
+       |
+       +--> Tier 1 (Critical) -- Full questionnaire (65 q) + live audit
+       +--> Tier 2 (High)     -- Standard questionnaire (40 q) + SOC 2 review
+       +--> Tier 3 (Medium)   -- Lite questionnaire (19 q) + cert verification
+       +--> Tier 4 (Low)      -- Self-attestation only
+               |
+               v
+       Weighted Risk Scoring & Residual Risk Calculation
+               |
+               v
        Approve / Conditional / Reject + Exception Management
-               │
-               ▼
+               |
+               v
        Annual Re-Assessment + Continuous Monitoring
 ```
 
 ## Vendor Risk Scoring Model
 
-| Domain | Weight | Max Score |
-|--------|--------|-----------|
-| Data Security & Encryption | 25% | 25 |
-| Access Control & IAM | 20% | 20 |
-| Incident Response & BCP | 20% | 20 |
-| Compliance & Certifications | 15% | 15 |
-| Network & Infrastructure Security | 10% | 10 |
-| Physical Security | 10% | 10 |
-| **Total** | **100%** | **100** |
+| Domain | Weight |
+|--------|--------|
+| Data Security & Encryption | 25% |
+| Access Control & IAM | 20% |
+| Incident Response & BCP | 20% |
+| Compliance & Certifications | 15% |
+| Network & Infrastructure Security | 10% |
+| Physical Security | 10% |
 
-**Risk Tier Thresholds:**
-- Score 85–100: Low Risk → Approve
-- Score 70–84: Medium Risk → Conditional Approval with remediation plan
-- Score 50–69: High Risk → Conditional Approval with 90-day remediation
-- Score < 50: Critical Risk → Reject / Exception required
+**Risk tier thresholds:** 85-100 Low (approve) | 70-84 Medium (conditional) | 50-69 High (conditional + 90-day remediation) | <50 Critical (reject / exception). Full scoring criteria, evidence rules, and inherent-vs-residual methodology in [`risk-scoring/vendor-risk-rubric.md`](risk-scoring/vendor-risk-rubric.md).
 
 ## Repo Contents
 
 ```
 tprm-vendor-risk-framework/
-├── questionnaires/
-│   ├── tier1-critical-vendor.md      # Full security questionnaire (80 questions)
-│   ├── tier2-high-vendor.md          # Standard questionnaire (40 questions)
-│   └── tier3-medium-vendor.md        # Lite questionnaire (20 questions)
-├── risk-scoring/
-│   └── vendor-risk-rubric.md         # Scoring criteria per domain
-├── exception-management/
-│   └── exception-workflow.md         # Exception request and approval process
-├── templates/
-│   └── vendor-risk-report.md         # Executive risk dashboard template
-└── README.md
+|-- questionnaires/
+|   |-- tier1-critical-vendor.md              # Full questionnaire, 65 questions, 6 domains
+|   |-- tier2-high-vendor.md                  # Standard questionnaire, 40 questions
+|   |-- tier3-medium-vendor.md                # Lite questionnaire, 19 questions
+|   `-- sample-assessment-acme-cloud-tier2.md # Completed worked example with findings & disposition
+|-- risk-scoring/
+|   `-- vendor-risk-rubric.md                 # Scoring scale, weights, thresholds, residual risk
+|-- exception-management/
+|   `-- exception-workflow.md                 # Time-boxed risk acceptance process + record schema
+|-- templates/
+|   `-- vendor-risk-report.md                 # Executive assessment report template
+|-- tprm-visuals/                             # Framework diagrams
+`-- README.md
 ```
 
-## Sample Vendor Assessment — Tier 2
+## Worked Example
 
-| Question | Response | Score |
-|----------|----------|-------|
-| Do you hold SOC 2 Type II certification? | Yes (2024) | 15/15 |
-| Is MFA enforced for all privileged access? | Yes | 10/10 |
-| What is your RTO for critical systems? | 4 hours | 8/10 |
-| Do you encrypt data at rest (AES-256)? | Yes | 10/10 |
-| Is an incident response plan documented and tested? | Partially | 6/10 |
-| **Total** | | **49/55** |
+See [`questionnaires/sample-assessment-acme-cloud-tier2.md`](questionnaires/sample-assessment-acme-cloud-tier2.md): a complete Tier 2 assessment of a fictional SaaS vendor — weighted score 81.3/100, Medium inherent risk, residual risk reduced via compensating controls, conditional approval with a tracked remediation plan.
 
 ## References
 

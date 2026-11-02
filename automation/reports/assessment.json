@@ -1,0 +1,18 @@
+{
+    "vendor_name": "Acme Cloud Demo",
+    "vendor_tier": "Tier 2 - High",
+    "assessment_date": "2026-11-02T22:16:45.942073+00:00",
+    "weighted_score": 81.25,
+    "preliminary_risk_level": "Medium",
+    "findings_count": 1,
+    "findings": [
+        {
+            "control": "privileged_mfa",
+            "finding": "Privileged MFA is not enabled",
+            "status": "Failed",
+            "requires_review": true
+        }
+    ],
+    "recommendation": "Manual security review required",
+    "automated_approval": false
+}

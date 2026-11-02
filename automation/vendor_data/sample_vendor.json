@@ -1,0 +1,21 @@
+
+{
+  "vendor_name": "Acme Cloud Demo",
+  "vendor_tier": "Tier 2 - High",
+  "assessment_type": "Security Assessment",
+
+  "domain_scores": {
+    "data_security": 84,
+    "access_control": 79,
+    "incident_response": 81,
+    "compliance": 73,
+    "network_security": 78,
+    "physical_security": 95
+  },
+
+  "controls": {
+    "privileged_mfa": false,
+    "encryption_at_rest": true,
+    "audit_logging": true
+  }
+}
